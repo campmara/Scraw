@@ -146,12 +146,12 @@ public class CrowController : MonoBehaviour
         Vector3 rightHandDirectionFromNeck = rightHandPos - _neckPos;
         Vector3 forwardOfNeck = _neckPos + _crowRigidbody.transform.forward;
         Vector3 neckForwardNormalized = (forwardOfNeck - _neckPos).normalized;
-        float leftDotHeadForward = Vector3.Dot(leftHandDirectionFromNeck.normalized, neckForwardNormalized);
-        float rightDotHeadForward = Vector3.Dot(rightHandDirectionFromNeck.normalized, neckForwardNormalized);
-        bool isWingspanToTheSides = leftDotHeadForward < _glideMaxHandDotWithForward &&
-                                    leftDotHeadForward > _glideMinHandDotWithForward &&
-                                    rightDotHeadForward < _glideMaxHandDotWithForward &&
-                                    rightDotHeadForward > _glideMinHandDotWithForward;
+        float leftDotNeckForward = Vector3.Dot(leftHandDirectionFromNeck.normalized, neckForwardNormalized);
+        float rightDotNeckForward = Vector3.Dot(rightHandDirectionFromNeck.normalized, neckForwardNormalized);
+        bool isWingspanToTheSides = leftDotNeckForward < _glideMaxHandDotWithForward &&
+                                    leftDotNeckForward > _glideMinHandDotWithForward &&
+                                    rightDotNeckForward < _glideMaxHandDotWithForward &&
+                                    rightDotNeckForward > _glideMinHandDotWithForward;
         _isWingspanToTheSidesLabel.text = isWingspanToTheSides ? "Is Wingspan To The Sides? YES" : "Is Wingspan To The Sides? NO";
 
         _isGroundedLabel.text = IsOnGround ? "Is Grounded? YES" : "Is Grounded? NO";
